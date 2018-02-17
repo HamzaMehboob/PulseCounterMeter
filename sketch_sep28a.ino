@@ -1,4 +1,26 @@
+/*
+
+  LCD Pulse Counter meter. 
+  
+  Copyright (c) 2018, hamzamehboob103@gmail.com
+  All rights reserved.
+
+  This code is written to be used on Arduino MEga 2560. 
+
+  With described hardware and this firmware it has achieved following functionality till now. 
+
+  * Pulse count sensor input at pin20.
+    
+  * Buzzer output at 990 pulses and above from pin 8
+  
+  * Display with 16*2 LCD with LCD(12,11,5,4,3,2) pin configurations. 
+   
+  * Buzzer can be made off by connecting a button in series with buzzer (hardware changes) 
+*/
+ 
+ 
  #include <LiquidCrystal.h>
+ 
 LiquidCrystal LCD(12,11,5,4,3,2);
 int foundHigh = 0;
 int counter = 0;
