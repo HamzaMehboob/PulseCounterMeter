@@ -22,7 +22,7 @@
  #include <LiquidCrystal.h>
  
 LiquidCrystal LCD(12,11,5,4,3,2);
-int foundHigh = 0;
+int foundHigh = 1;
 int counter = 0;
 const byte interruptPin = 20;
 const byte buzzerPin = 7;
@@ -44,20 +44,33 @@ void loop() {
   if(millis()%500)
   {
       handleDisplay();
+      handleBuzzzer();
   }
 }
 
  void blink()
 { 
-  if(digitalRead(interruptPin) == LOW)
+  
+ if((foundHigh==0) && (digitalRead(interruptPin) == LOW))
+    foundHigh = 1;
+    
+  if(foundHigh==1)
+  {
+    foundHigh = 0;
     counter++;
+   }
+  //if(digitalRead(interruptPin) == LOW)
+  //  counter++;
+ }
+ 
+ void handleBuzzzer()
+ {
   if(counter >(pulseConstant-10))
       {
           analogWrite(buzzerPin,buzzerState);
           buzzerState=(buzzerState%40)+5; 
       }
  }
-
  void handleDisplay()
 {
   if(digitalRead(DisplayPin) == LOW)
