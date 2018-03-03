@@ -36,7 +36,7 @@ void setup() {
    pinMode(interruptPin, INPUT_PULLUP);
    pinMode(buzzerPin, OUTPUT);
    pinMode(DisplayPin, INPUT);
-  attachInterrupt(digitalPinToInterrupt(interruptPin), blink, FALLING);
+   attachInterrupt(digitalPinToInterrupt(interruptPin), blink, CHANGE);
   handleDisplay();  
   }
   
@@ -50,17 +50,13 @@ void loop() {
 
  void blink()
 { 
-  
- if((foundHigh==0) && (digitalRead(interruptPin) == LOW))
-    foundHigh = 1;
-    
-  if(foundHigh==1)
-  {
-    foundHigh = 0;
-    counter++;
-   }
-  //if(digitalRead(interruptPin) == LOW)
-  //  counter++;
+    if((foundHigh==0) && (digitalRead(interruptPin) == HIGH))
+        foundHigh = 1;
+    if((foundHigh==1) && (digitalRead(interruptPin) == LOW))
+    {
+        counter++;
+        foundHigh = 0;
+    }
  }
  
  void handleBuzzzer()
