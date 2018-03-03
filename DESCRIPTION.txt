@@ -1,1 +1,5 @@
 Code is Written for Arduino MEGA 2560 board.
+Have accuracy of 1  to 102 HZ (below 1 is not tested, may have below 1Hz accuracy)
+Written for Meter pulse counter test. 
+LCD16*2, Buzzer with optional Display of Constant is used.
+For more info contact at : hamzamehboob103@gmail.com	
